@@ -6,6 +6,9 @@ pipeline {
     triggers {
         pollSCM('* * * * *')
     }
+    tools {
+        dotnetsdk 'DOTNET8'
+    }
     stages {
         stage('SCM') {
             steps {
@@ -15,8 +18,8 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh '/usr/bin/dotnet build -c Release src/Presentation/Nop.Web/Nop.Web.csproj'
-                sh 'mkdir published && /usr/bin/dotnet publish -o ./published -c Release src/Presentation/Nop.Web/Nop.Web.csproj'
+                sh 'dotnet build -c Release src/Presentation/Nop.Web/Nop.Web.csproj'
+                sh 'mkdir published && dotnet publish -o ./published -c Release src/Presentation/Nop.Web/Nop.Web.csproj'
             }
             post {
                 success {
