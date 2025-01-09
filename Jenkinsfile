@@ -56,7 +56,7 @@ pipeline{
         }
         stage ('package') {
             steps {
-                sh 'mkdir published && dotnet publish -o ./published -c Release src/Presentation/Nop.Web/Nop.Web.csproj'
+                sh 'mkdir - -p published && dotnet publish -o ./published -c Release src/Presentation/Nop.Web/Nop.Web.csproj'
             }
         }
     } 
